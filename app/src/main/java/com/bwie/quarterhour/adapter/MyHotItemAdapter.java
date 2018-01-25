@@ -19,7 +19,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * 作者：王庆
@@ -65,16 +65,11 @@ public class MyHotItemAdapter extends RecyclerView.Adapter<MyHotItemAdapter.MyIt
                 Toast.makeText(context, dataBean.getUid() + "", Toast.LENGTH_SHORT).show();
             }
         });
-        holder.mJcPlayer.setUp("http://ips.ifeng.com/video19.ifeng.com/video09/2014/06/16/1989823-102-086-0009.mp4", "李少奇骑猪上高速");
-        ImageView ivThumb = holder.mJcPlayer.ivThumb;
+        holder.mJcPlayer.setUp("http://ips.ifeng.com/video19.ifeng.com/video09/2014/06/16/1989823-102-086-0009.mp4", JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "李少奇骑猪上高速");
+//        ImageView ivThumb = holder.mJcPlayer.ivThumb;
         Glide.with(context).load(R.drawable.raw_1500978299)
-                .into(ivThumb);
-        holder.mJcPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "sdf", Toast.LENGTH_SHORT).show();
-            }
-        });
+                .into(holder.mJcPlayer.thumbImageView);
+
         //喜欢
         holder.mLike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +130,7 @@ public class MyHotItemAdapter extends RecyclerView.Adapter<MyHotItemAdapter.MyIt
         private final TextView mMessage;
         private final LinearLayout mLinear;
         private final LinearLayout mHotLinear;
-        private final JCVideoPlayer mJcPlayer;
+        private final JCVideoPlayerStandard mJcPlayer;
 
         public MyItemHolder(View itemView) {
             super(itemView);
