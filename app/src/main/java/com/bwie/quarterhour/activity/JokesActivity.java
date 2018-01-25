@@ -112,6 +112,7 @@ public class JokesActivity extends BaseActivity implements JokesView {
     public void releaseSuccess(JokeBean jokeBean) {
         if (jokeBean.getCode().equals("0")) {
             $Toast("发布成功");
+            $startActivity(SuccessActivity.class);
         } else {
             $Toast(jokeBean.getMsg());
         }
