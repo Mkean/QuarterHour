@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.bwie.quarterhour.activity.JokesActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/text_title_layout" />
+
+    <EditText
+        android:id="@+id/ed_jokes"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="请输入内容，禁止输入色情、暴力等违反国家法律的内容，违者将以封号处理！"
+        android:padding="10dp" />
+
+    <ImageView
+        android:id="@+id/ed_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/raw_1500020546" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Ta"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/black" />
+</LinearLayout>

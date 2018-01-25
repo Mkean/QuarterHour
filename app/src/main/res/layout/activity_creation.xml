@@ -9,9 +9,7 @@
     tools:context="com.bwie.quarterhour.activity.CreationActivity">
 
     <include
-        layout="@layout/text_title_layout"
-        android:layout_width="match_parent"
-        android:layout_height="60dp" />
+        layout="@layout/text_title_layout" />
 
 
     <LinearLayout
