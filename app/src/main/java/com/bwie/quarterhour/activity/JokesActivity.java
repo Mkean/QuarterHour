@@ -1,5 +1,6 @@
 package com.bwie.quarterhour.activity;
 
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,9 +16,11 @@ public class JokesActivity extends BaseActivity {
     private TextView mRight;
     private ImageView mImg;
     private EditText mJokes;
+    private SharedPreferences preferences;
 
     @Override
     protected void initData() {
+        preferences = getSharedPreferences("data", MODE_PRIVATE);
         mRight.setText("发表");
     }
 
@@ -49,7 +52,7 @@ public class JokesActivity extends BaseActivity {
                 $Toast("小程正在努力研发中…");
                 break;
             case R.id.text_right:
-        //sdkaksdjaskldjkasdj
+                String jokes = mJokes.getText().toString();
                 break;
 
             case R.id.text_left:

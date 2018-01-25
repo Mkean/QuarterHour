@@ -2,6 +2,7 @@ package com.bwie.quarterhour.api;
 
 import com.bwie.quarterhour.bean.EpisodeBean;
 import com.bwie.quarterhour.bean.HotBean;
+import com.bwie.quarterhour.bean.JokeBean;
 import com.bwie.quarterhour.bean.LoginBean;
 import com.bwie.quarterhour.bean.MBanner;
 import com.bwie.quarterhour.bean.RegisterBean;
@@ -43,4 +44,7 @@ public interface MyApi {
 
     @GET(MyWeb.getJokes)
     Observable<EpisodeBean> getJokes(@Query("page") int page, @Query("token") String token);
+
+    @GET(MyWeb.PublishJoke)
+    Observable<JokeBean> releaseJokes(@Query("uid") String uid, @Query("content") String content, @Query("token") String token);
 }

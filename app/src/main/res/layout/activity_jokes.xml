@@ -16,6 +16,7 @@
         android:background="@null"
         android:gravity="top"
         android:hint="请输入内容，禁止输入色情、暴力等违反国家法律的内容，违者将以封号处理！"
+        android:maxLines="240"
         android:padding="10dp" />
 
     <ImageView
@@ -42,6 +43,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
-        android:layout_marginTop="10dp"
         android:background="@color/black" />
 </LinearLayout>
