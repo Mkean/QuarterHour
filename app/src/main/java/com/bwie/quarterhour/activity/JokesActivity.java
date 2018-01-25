@@ -49,7 +49,6 @@ public class JokesActivity extends BaseActivity {
                 $Toast("小程正在努力研发中…");
                 break;
             case R.id.text_right:
-        //sdkaksdjaskldjkasdj
                 break;
 
             case R.id.text_left:
