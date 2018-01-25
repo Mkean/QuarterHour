@@ -69,22 +69,6 @@ public class MyHotItemAdapter extends RecyclerView.Adapter<MyHotItemAdapter.MyIt
         ImageView ivThumb = holder.mJcPlayer.ivThumb;
         Glide.with(context).load(R.drawable.raw_1500978299)
                 .into(ivThumb);
-//        holder.mJcPlayer.ivThumb.setImageResource(R.drawable.raw_1500978299);
-//        holder.mJcPlayer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, "sad", Toast.LENGTH_SHORT).show();
-//                if (!isVisible) {
-////                    holder.mSwitch.setVisibility(View.GONE);
-//                    holder.mLinear.setVisibility(View.VISIBLE);
-//                    isVisible = true;
-//                } else {
-////                    holder.mSwitch.setVisibility(View.VISIBLE);
-//                    holder.mLinear.setVisibility(View.GONE);
-//                    isVisible = false;
-//                }
-//            }
-//        });
         holder.mJcPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
