@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.bwie.quarterhour.activity.BaseActivity;
+import com.bwie.quarterhour.activity.CreationActivity;
 import com.bwie.quarterhour.activity.LoginActivity;
 import com.bwie.quarterhour.bean.UserInfoBean;
 import com.bwie.quarterhour.fragment.EpisodeFragment;
@@ -132,7 +133,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         switch (v.getId()) {
             //编辑
             case R.id.title_edit:
-
+                $startActivity(CreationActivity.class);
                 break;
             //侧拉
             case R.id.title_simple:

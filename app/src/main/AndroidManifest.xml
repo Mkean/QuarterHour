@@ -30,7 +30,8 @@
         <activity android:name=".activity.Login2Activity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.ForgetActivity" />
-        <activity android:name=".activity.UpdatePassActivity"></activity>
+        <activity android:name=".activity.UpdatePassActivity" />
+        <activity android:name=".activity.CreationActivity"></activity>
     </application>
 
 </manifest>

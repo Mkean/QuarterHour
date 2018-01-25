@@ -50,6 +50,6 @@ dependencies {
     compile 'com.facebook.fresco:animated-gif:+'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'jp.wasabeef:glide-transformations:1.0.6'
-    testCompile 'junit:junit:4.12'
     compile 'fm.jiecao:jiecaovideoplayer:+'
+    testCompile 'junit:junit:4.12'
 }
