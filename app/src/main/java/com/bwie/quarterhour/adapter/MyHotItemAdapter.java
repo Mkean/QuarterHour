@@ -58,7 +58,7 @@ public class MyHotItemAdapter extends RecyclerView.Adapter<MyHotItemAdapter.MyIt
             holder.mName.setText(user.getNickname() + "");
         }
         holder.mCreateTime.setText(dataBean.getCreateTime() + "");
-//        holder.mPlayerSimpler.setImageURI("res://com.bwie.quarterhour/" + R.drawable.raw_1500978299);
+
         holder.mHotLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
