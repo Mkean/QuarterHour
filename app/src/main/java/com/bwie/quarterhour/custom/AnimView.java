@@ -133,6 +133,9 @@ public class AnimView extends RelativeLayout implements View.OnClickListener {
     private void startAnim() {
         //旋转
         ObjectAnimator rotate = new ObjectAnimator().ofFloat(mAdd, "rotation", 360f, 0f).setDuration(1000);
+
+
+
         //位移
         ObjectAnimator mReportTranX = new ObjectAnimator().ofFloat(mReport, "translationX", 0f, -60f).setDuration(1000);
         //旋转
