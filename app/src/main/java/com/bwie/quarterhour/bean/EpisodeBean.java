@@ -60,10 +60,10 @@ public class EpisodeBean {
         private String content;
         private String createTime;
         private Object imgUrls;
-        private int jid;
+        private String jid;
         private Object praiseNum;
         private Object shareNum;
-        private int uid;
+        private String uid;
         private UserBean user;
 
         public Object getCommentNum() {
@@ -98,11 +98,11 @@ public class EpisodeBean {
             this.imgUrls = imgUrls;
         }
 
-        public int getJid() {
+        public String getJid() {
             return jid;
         }
 
-        public void setJid(int jid) {
+        public void setJid(String jid) {
             this.jid = jid;
         }
 
@@ -122,11 +122,11 @@ public class EpisodeBean {
             this.shareNum = shareNum;
         }
 
-        public int getUid() {
+        public String getUid() {
             return uid;
         }
 
-        public void setUid(int uid) {
+        public void setUid(String uid) {
             this.uid = uid;
         }
 

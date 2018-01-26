@@ -1,6 +1,7 @@
 package com.bwie.quarterhour.api;
 
 import com.bwie.quarterhour.bean.EpisodeBean;
+import com.bwie.quarterhour.bean.FollowBean;
 import com.bwie.quarterhour.bean.HotBean;
 import com.bwie.quarterhour.bean.JokeBean;
 import com.bwie.quarterhour.bean.LoginBean;
@@ -13,6 +14,8 @@ import com.bwie.quarterhour.constant.MyWeb;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+
+import static com.bwie.quarterhour.constant.MyWeb.follow;
 
 /**
  * 作者：王庆
@@ -47,4 +50,7 @@ public interface MyApi {
 
     @GET(MyWeb.PublishJoke)
     Observable<JokeBean> releaseJokes(@Query("uid") String uid, @Query("content") String content, @Query("token") String token);
+
+    @GET(follow)
+    Observable<FollowBean> follow(@Query("uid") String uid, @Query("followId") String followId, @Query("token") String token);
 }

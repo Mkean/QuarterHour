@@ -29,5 +29,7 @@ public class MyWeb {
     public static final String PublicVideo = "quarter/publishVideo";
     //获取视频列表
     public static final String getVideos = "quarter/getVideos";
+    //关注
+    public static final String follow = "quarter/follow";
 
 }

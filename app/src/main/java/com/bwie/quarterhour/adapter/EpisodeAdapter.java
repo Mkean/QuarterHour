@@ -1,16 +1,17 @@
 package com.bwie.quarterhour.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
-import android.widget.LinearLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bwie.quarterhour.R;
+import com.bwie.quarterhour.activity.UserActivity;
 import com.bwie.quarterhour.bean.EpisodeBean;
 import com.bwie.quarterhour.custom.AnimView;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -57,7 +58,9 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeH
         holder.mLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, dataBean.getUid() + "", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, UserActivity.class);
+                intent.putExtra("uid", dataBean.getUid());
+                context.startActivity(intent);
             }
         });
     }

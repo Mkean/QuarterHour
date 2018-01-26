@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import com.bwie.quarterhour.R;
 
+/*
+*
+* 前去看看（详情页）
+* */
 public class SuccessActivity extends BaseActivity {
 
     private ImageView mWeChat;

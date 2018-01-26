@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bwie.quarterhour.R;
 import com.bwie.quarterhour.bean.EpisodeBean;
@@ -57,7 +58,8 @@ public class MyHotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ((MyBannerHolder) holder).mBanner.start();
         }
         if (holder instanceof MyHotHolder) {
-            if(data == null){
+            if (data == null) {
+                Toast.makeText(context, "连接超时", Toast.LENGTH_SHORT).show();
                 return;
             }
             MyHotItemAdapter adapter = new MyHotItemAdapter(data, context);

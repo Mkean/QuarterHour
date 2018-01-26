@@ -1,6 +1,7 @@
 package com.bwie.quarterhour.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bwie.quarterhour.R;
+import com.bwie.quarterhour.activity.UserActivity;
 import com.bwie.quarterhour.bean.EpisodeBean;
 import com.bwie.quarterhour.custom.AnimView;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -25,6 +27,11 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
  * 作者：王庆
  * 时间：2018/1/23
  */
+
+/*
+* 视频点击事件，喜欢等的显示
+*
+* */
 
 public class MyHotItemAdapter extends RecyclerView.Adapter<MyHotItemAdapter.MyItemHolder> {
     private List<EpisodeBean.DataBean> list;
@@ -62,7 +69,9 @@ public class MyHotItemAdapter extends RecyclerView.Adapter<MyHotItemAdapter.MyIt
         holder.mHotLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, dataBean.getUid() + "", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, UserActivity.class);
+                intent.putExtra("uid", dataBean.getUid());
+                context.startActivity(intent);
             }
         });
         holder.mJcPlayer.setUp("http://ips.ifeng.com/video19.ifeng.com/video09/2014/06/16/1989823-102-086-0009.mp4", JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "李少奇骑猪上高速");

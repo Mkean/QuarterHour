@@ -77,7 +77,7 @@ public class JokesActivity extends BaseActivity implements JokesView {
                 initPopupWindow();
                 break;
             case R.id.pop_cancel:
-                finish();
+                mPopupWindow.dismiss();
                 break;
             case R.id.pop_keep:
                 finish();

@@ -30,7 +30,10 @@ import static android.content.Context.MODE_PRIVATE;
  * 作者：王庆
  * 时间：2018/1/22
  */
-
+/*
+*
+* 段子详情
+* */
 public class EpisodeFragment extends Fragment implements EpisodeView {
 
     @InjectView(R.id.episode_lv)

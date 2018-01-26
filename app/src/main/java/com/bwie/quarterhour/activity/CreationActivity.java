@@ -6,6 +6,10 @@ import android.widget.TextView;
 
 import com.bwie.quarterhour.R;
 
+/*
+*
+* 相机
+* */
 public class CreationActivity extends BaseActivity {
 
     private LinearLayout mVideo;
