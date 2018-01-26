@@ -75,20 +75,9 @@ public class UserActivity extends BaseActivity implements FollowView {
     @Override
     protected void setListener() {
         mHead.setOnClickListener(this);
-        mPraiseBt.setOnClickListener(this);
-        mBt.setOnClickListener(this);
-        mBack.setOnClickListener(this);
-        mShare.setOnClickListener(this);
-        mMessage.setOnClickListener(this);
-    }
-
-    @Override
-    public void widgetClick(View v) {
-        switch (v.getId()) {
-            case R.id.head_simple:
-                $Toast("小程正在努力研发中…");
-                break;
-            case R.id.praise_bt:
+        mPraiseBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 if (i == 0) {
                     mPraiseBt.setBackground(getResources().getDrawable(R.drawable.one_praise));
                     praise++;
@@ -107,6 +96,19 @@ public class UserActivity extends BaseActivity implements FollowView {
                 } else {
                     $Toast("每个用户只可以赞三次");
                 }
+            }
+        });
+        mBt.setOnClickListener(this);
+        mBack.setOnClickListener(this);
+        mShare.setOnClickListener(this);
+        mMessage.setOnClickListener(this);
+    }
+
+    @Override
+    public void widgetClick(View v) {
+        switch (v.getId()) {
+            case R.id.head_simple:
+                $Toast("小程正在努力研发中…");
                 break;
             case follow_bt:
                 followPresenter.follow(preferences.getString("uid", ""), uid, preferences.getString("token", ""));

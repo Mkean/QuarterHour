@@ -38,7 +38,7 @@ public class MBannerPresenter extends IPresenter<MBannerView> {
                         @Override
                         public void accept(MBanner banner) throws Exception {
                             if (view != null) {
-                                Log.e("TAG", "======" + view.get() + "|======");
+                                Log.e("MBannerPresenter", "======" + view.get() + "|======");
                                 if (view.get() == null) {
                                     return;
                                 }
@@ -54,7 +54,7 @@ public class MBannerPresenter extends IPresenter<MBannerView> {
                                 if (view.get() == null) {
                                     return;
                                 }
-                                Log.e("TAG1", "======" + view.get() + "|======");
+                                Log.e("MBannerPresenter", "======" + view.get() + "|======");
                                 view.get().getBannerFailed(throwable);
                             } else {
                                 return;

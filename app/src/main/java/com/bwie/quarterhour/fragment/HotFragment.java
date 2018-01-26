@@ -96,7 +96,7 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
     @Override
     public void getBannerFailed(Throwable e) {
         Toast.makeText(getContext(), "请求banner图失败", Toast.LENGTH_SHORT).show();
-        Log.e("TAG", e.getMessage().toString());
+        Log.e("HotFragment", e.getMessage().toString());
     }
 
 
@@ -112,7 +112,7 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
     @Override
     public void getJokesFailed(Throwable e) {
         Toast.makeText(getContext(), "请求数据失败", Toast.LENGTH_SHORT).show();
-        Log.e("TAG", e.getMessage().toString());
+        Log.e("HotFragment", e.getMessage().toString());
     }
 
     @Override
