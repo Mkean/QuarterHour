@@ -3,6 +3,7 @@ package com.bwie.quarterhour.activity;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -112,7 +113,9 @@ public class JokesActivity extends BaseActivity implements JokesView {
     public void releaseSuccess(JokeBean jokeBean) {
         if (jokeBean.getCode().equals("0")) {
             $Toast("发布成功");
-            $startActivity(SuccessActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("content", "1");
+            $startActivity(SuccessActivity.class, bundle);
         } else {
             $Toast(jokeBean.getMsg());
         }

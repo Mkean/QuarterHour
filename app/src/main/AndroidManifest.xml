@@ -37,7 +37,8 @@
             android:name=".activity.SuccessActivity"
             android:label="@string/title_activity_success"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.DetailsActivity"></activity>
+        <activity android:name=".activity.DetailsActivity" />
+        <activity android:name=".activity.VideoActivity"></activity>
     </application>
 
 </manifest>

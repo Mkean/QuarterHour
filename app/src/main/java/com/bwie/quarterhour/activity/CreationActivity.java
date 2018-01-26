@@ -44,7 +44,7 @@ public class CreationActivity extends BaseActivity {
     public void widgetClick(View v) {
         switch (v.getId()) {
             case R.id.create_video:
-
+                $startActivity(VideoActivity.class);
                 break;
             case R.id.create_jokes:
                 $startActivity(JokesActivity.class);
