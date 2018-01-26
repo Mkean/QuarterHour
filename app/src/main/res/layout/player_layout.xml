@@ -22,11 +22,11 @@
         android:layout_height="200dp"></fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
 
     <!--<com.facebook.drawee.view.SimpleDraweeView-->
-        <!--android:id="@+id/switch_simple"-->
-        <!--android:layout_width="60dp"-->
-        <!--android:layout_height="60dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--fresco:placeholderImage="@drawable/raw_1500455206" />-->
+    <!--android:id="@+id/switch_simple"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--fresco:placeholderImage="@drawable/raw_1500455206" />-->
 
     <LinearLayout
         android:id="@+id/play_linear"
@@ -34,8 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:visibility="gone">
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/play_like"

@@ -114,7 +114,7 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
         Toast.makeText(getContext(), "请求数据失败", Toast.LENGTH_SHORT).show();
         Log.e("HotFragment", e.getMessage().toString());
     }
-
+    
     @Override
     public void onPause() {
         super.onPause();

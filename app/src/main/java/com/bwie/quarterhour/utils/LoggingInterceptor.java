@@ -112,6 +112,7 @@ public class LoggingInterceptor implements Interceptor {
                         .build();
             }
         }
+        Log.e("拦截器----", request.url() + "---" + request.method() + "--" + request.header("User-agent"));
         Response response = chain.proceed(request);
 
         return response;

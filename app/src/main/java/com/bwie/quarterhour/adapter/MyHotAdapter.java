@@ -59,7 +59,7 @@ public class MyHotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
         if (holder instanceof MyHotHolder) {
             if (data == null) {
-                Toast.makeText(context, "连接超时", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "请求数据失败", Toast.LENGTH_SHORT).show();
                 return;
             }
             MyHotItemAdapter adapter = new MyHotItemAdapter(data, context);
