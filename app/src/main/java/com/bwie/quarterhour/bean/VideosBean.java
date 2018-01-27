@@ -62,27 +62,27 @@ public class VideosBean {
          * workDesc : 俞敏洪小视频
          */
 
-        private int commentNum;
+        private String commentNum;
         private String cover;
         private String createTime;
-        private int favoriteNum;
+        private String favoriteNum;
         private String latitude;
         private Object localUri;
         private String longitude;
-        private int playNum;
-        private int praiseNum;
-        private int uid;
+        private String playNum;
+        private String praiseNum;
+        private String uid;
         private UserBean user;
         private String videoUrl;
-        private int wid;
+        private String wid;
         private String workDesc;
         private List<?> comments;
 
-        public int getCommentNum() {
+        public String getCommentNum() {
             return commentNum;
         }
 
-        public void setCommentNum(int commentNum) {
+        public void setCommentNum(String commentNum) {
             this.commentNum = commentNum;
         }
 
@@ -102,11 +102,11 @@ public class VideosBean {
             this.createTime = createTime;
         }
 
-        public int getFavoriteNum() {
+        public String getFavoriteNum() {
             return favoriteNum;
         }
 
-        public void setFavoriteNum(int favoriteNum) {
+        public void setFavoriteNum(String favoriteNum) {
             this.favoriteNum = favoriteNum;
         }
 
@@ -134,27 +134,27 @@ public class VideosBean {
             this.longitude = longitude;
         }
 
-        public int getPlayNum() {
+        public String getPlayNum() {
             return playNum;
         }
 
-        public void setPlayNum(int playNum) {
+        public void setPlayNum(String playNum) {
             this.playNum = playNum;
         }
 
-        public int getPraiseNum() {
+        public String getPraiseNum() {
             return praiseNum;
         }
 
-        public void setPraiseNum(int praiseNum) {
+        public void setPraiseNum(String praiseNum) {
             this.praiseNum = praiseNum;
         }
 
-        public int getUid() {
+        public String getUid() {
             return uid;
         }
 
-        public void setUid(int uid) {
+        public void setUid(String uid) {
             this.uid = uid;
         }
 
@@ -174,11 +174,11 @@ public class VideosBean {
             this.videoUrl = videoUrl;
         }
 
-        public int getWid() {
+        public String getWid() {
             return wid;
         }
 
-        public void setWid(int wid) {
+        public void setWid(String wid) {
             this.wid = wid;
         }
 

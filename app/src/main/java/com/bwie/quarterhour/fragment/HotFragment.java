@@ -13,13 +13,13 @@ import android.widget.Toast;
 
 import com.bwie.quarterhour.R;
 import com.bwie.quarterhour.adapter.MyHotItemAdapter;
-import com.bwie.quarterhour.bean.EpisodeBean;
 import com.bwie.quarterhour.bean.MBanner;
-import com.bwie.quarterhour.presenter.EpisodePresenter;
+import com.bwie.quarterhour.bean.VideosBean;
 import com.bwie.quarterhour.presenter.MBannerPresenter;
+import com.bwie.quarterhour.presenter.VideosPresenter;
 import com.bwie.quarterhour.utils.ImageUtils;
-import com.bwie.quarterhour.view.EpisodeView;
 import com.bwie.quarterhour.view.MBannerView;
+import com.bwie.quarterhour.view.VideosView;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
@@ -34,16 +34,15 @@ import static android.content.Context.MODE_PRIVATE;
  * 时间：2018/1/22
  */
 
-public class HotFragment extends LazyFragment implements MBannerView, EpisodeView {
+public class HotFragment extends LazyFragment implements MBannerView, VideosView {
     private boolean isPrepared;
     private View view;
     private MBannerPresenter mBannerPresenter;
     private RecyclerView mLv;
     private SharedPreferences preferences;
-    private EpisodePresenter episodePresenter;
-    private List<EpisodeBean.DataBean> data;
     private Banner mBanner;
     private MyHotItemAdapter adapter;
+    private VideosPresenter videosPresenter;
 
     @Nullable
     @Override
@@ -74,8 +73,8 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
             return;
         }
         preferences = getContext().getSharedPreferences("data", MODE_PRIVATE);
-        episodePresenter = new EpisodePresenter(this);
-        episodePresenter.getJokes(2, preferences.getString("token", ""));
+        videosPresenter = new VideosPresenter(this);
+        videosPresenter.getVideos(preferences.getString("uid", ""), "1", 1);
 
         mBannerPresenter = new MBannerPresenter(this);
         mBannerPresenter.getBanner();
@@ -104,25 +103,6 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
         Log.e("HotFragment", e.getMessage().toString());
     }
 
-
-    @Override
-    public void getJokesSuccess(EpisodeBean episodeBean) {
-        if (episodeBean.getCode().equals("0")) {
-            data = episodeBean.getData();
-            adapter = new MyHotItemAdapter(data, getContext());
-            mLv.setLayoutManager(new LinearLayoutManager(getContext()));
-            mLv.setAdapter(adapter);
-        } else {
-            Toast.makeText(getContext(), episodeBean.getMsg() + "", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    public void getJokesFailed(Throwable e) {
-        Toast.makeText(getContext(), "请求数据失败", Toast.LENGTH_SHORT).show();
-        Log.e("HotFragment", e.getMessage().toString());
-    }
-
     @Override
     public void onPause() {
         super.onPause();
@@ -136,9 +116,26 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
         if (mBannerPresenter != null) {
             mBannerPresenter.detach();
         }
-        if (episodePresenter != null) {
-            episodePresenter.detach();
+        if (videosPresenter != null) {
+            videosPresenter.detach();
         }
     }
 
+    @Override
+    public void getVideosSuccess(VideosBean videosBean) {
+        if (videosBean.getCode().equals("0")) {
+            List<VideosBean.DataBean> data = videosBean.getData();
+            adapter = new MyHotItemAdapter(data, getContext());
+            mLv.setLayoutManager(new LinearLayoutManager(getContext()));
+            mLv.setAdapter(adapter);
+        } else {
+            Toast.makeText(getContext(), videosBean.getMsg() + "", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void getVideosFailed(Throwable e) {
+        Toast.makeText(getContext(), "请求数据失败", Toast.LENGTH_SHORT).show();
+        Log.e("HotFragment", e.getMessage().toString());
+    }
 }

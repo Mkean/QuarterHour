@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 import com.bwie.quarterhour.R;
 import com.bwie.quarterhour.adapter.MyHotItemAdapter;
-import com.bwie.quarterhour.bean.EpisodeBean;
-import com.bwie.quarterhour.presenter.EpisodePresenter;
-import com.bwie.quarterhour.view.EpisodeView;
+import com.bwie.quarterhour.bean.VideosBean;
+import com.bwie.quarterhour.presenter.VideosPresenter;
+import com.bwie.quarterhour.view.VideosView;
 
 import java.util.List;
 
@@ -26,12 +26,12 @@ import static android.content.Context.MODE_PRIVATE;
  * 时间：2018/1/22
  */
 
-public class AttentionFragment extends LazyFragment implements EpisodeView {
+public class AttentionFragment extends LazyFragment implements VideosView {
     private boolean isPrepare;
     private View view;
     private RecyclerView mLv;
     private SharedPreferences preferences;
-    private EpisodePresenter episodePresenter;
+    private VideosPresenter videosPresenter;
 
     @Nullable
     @Override
@@ -61,28 +61,33 @@ public class AttentionFragment extends LazyFragment implements EpisodeView {
             return;
         }
         preferences = getContext().getSharedPreferences("data", MODE_PRIVATE);
-        episodePresenter = new EpisodePresenter(this);
-        episodePresenter.getJokes(2, preferences.getString("token", ""));
+        videosPresenter = new VideosPresenter(this);
+        videosPresenter.getVideos(preferences.getString("uid", ""), "1", 1);
     }
 
     @Override
-    public void getJokesSuccess(EpisodeBean episodeBean) {
-        if (episodeBean.getCode().equals("0")) {
-            List<EpisodeBean.DataBean> data = episodeBean.getData();
-            for (int i = 0; i < data.size(); i++) {
-                Log.e("TAG", data.get(i).getJid() + "");
-            }
+    public void getVideosSuccess(VideosBean videosBean) {
+        if (videosBean.getCode().equals("0")) {
+            List<VideosBean.DataBean> data = videosBean.getData();
             MyHotItemAdapter adapter = new MyHotItemAdapter(data, getContext());
             mLv.setLayoutManager(new LinearLayoutManager(getContext()));
             mLv.setAdapter(adapter);
         } else {
-            Toast.makeText(getContext(), episodeBean.getMsg(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), videosBean.getMsg() + "", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    public void getJokesFailed(Throwable e) {
+    public void getVideosFailed(Throwable e) {
         Toast.makeText(getContext(), "请求数据失败", Toast.LENGTH_SHORT).show();
-        Log.e("AttentionFragment", e.getMessage().toString());
+        Log.e("HotFragment", e.getMessage().toString());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (videosPresenter != null) {
+            videosPresenter.detach();
+        }
     }
 }

@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bwie.quarterhour.R;
 import com.bwie.quarterhour.activity.UserActivity;
-import com.bwie.quarterhour.bean.EpisodeBean;
+import com.bwie.quarterhour.bean.VideosBean;
 import com.bwie.quarterhour.custom.AnimView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -34,11 +34,11 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 * */
 
 public class MyHotItemAdapter extends RecyclerView.Adapter<MyHotItemAdapter.MyItemHolder> {
-    private List<EpisodeBean.DataBean> list;
+    private List<VideosBean.DataBean> list;
     private Context context;
     private boolean isVisible = false;
 
-    public MyHotItemAdapter(List<EpisodeBean.DataBean> list, Context context) {
+    public MyHotItemAdapter(List<VideosBean.DataBean> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -52,8 +52,8 @@ public class MyHotItemAdapter extends RecyclerView.Adapter<MyHotItemAdapter.MyIt
 
     @Override
     public void onBindViewHolder(final MyItemHolder holder, int position) {
-        final EpisodeBean.DataBean dataBean = list.get(position);
-        EpisodeBean.DataBean.UserBean user = dataBean.getUser();
+        final VideosBean.DataBean dataBean = list.get(position);
+        VideosBean.DataBean.UserBean user = dataBean.getUser();
         if (user.getIcon() == null) {
             holder.mSimple.setImageURI("res://com.bwie.quarterhour/" + R.drawable.raw_1500002478);
         } else {
