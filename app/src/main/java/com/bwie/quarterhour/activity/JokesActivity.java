@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import com.bwie.quarterhour.view.JokesView;
 public class JokesActivity extends BaseActivity implements JokesView {
 
 
-    private TextView mLeft;
+    private LinearLayout mLeft;
     private TextView mTitle;
     private TextView mRight;
     private ImageView mImg;
@@ -30,12 +31,15 @@ public class JokesActivity extends BaseActivity implements JokesView {
     private SharedPreferences preferences;
     private JokesPresenter jokesPresenter;
     private PopupWindow mPopupWindow;
+    private ImageView mLeftImg;
+    private TextView mContent;
 
 
     @Override
     protected void initData() {
         jokesPresenter = new JokesPresenter(this);
-
+        mContent.setText("取消");
+        mLeftImg.setVisibility(View.GONE);
         preferences = getSharedPreferences("data", MODE_PRIVATE);
         mRight.setText("发表");
     }
@@ -44,9 +48,11 @@ public class JokesActivity extends BaseActivity implements JokesView {
     protected void initView() {
         mJokes = (EditText) findViewById(R.id.ed_jokes);
         mImg = (ImageView) findViewById(R.id.ed_img);
-        mLeft = (TextView) findViewById(R.id.text_left);
+        mLeftImg = (ImageView) findViewById(R.id.left_img);
+        mLeft = (LinearLayout) findViewById(R.id.text_left);
         mTitle = (TextView) findViewById(R.id.text_title);
         mRight = (TextView) findViewById(R.id.text_right);
+        mContent = (TextView) findViewById(R.id.left_content);
     }
 
     @Override

@@ -31,5 +31,6 @@ public class MyWeb {
     public static final String getVideos = "quarter/getVideos";
     //关注
     public static final String follow = "quarter/follow";
-
+    //关注列表
+    public static final String followUsers = "quarter/getFollowUsers";
 }

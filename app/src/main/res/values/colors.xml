@@ -3,6 +3,12 @@
     <color name="creation_bg">#E1F587</color>
     <color name="colorPrimary">#03A9F4</color>
     <color name="colorPrimaryDark">#303F9F</color>
+
+    <color name="nightColorPrimary">#3b3b3b</color>
+    <color name="nightColorPrimaryDark">#383838</color>
+    <color name="nightColorAccent">#a72b55</color>
+
+
     <color name="colorAccent">#FF4081</color>
     <!-- 列表分割线   色值#999999 -->
     <color name="list_divider">#999999</color>

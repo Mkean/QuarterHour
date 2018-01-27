@@ -40,7 +40,7 @@ public class AttentionFragment extends LazyFragment implements EpisodeView {
         initView();
         isPrepare = true;
         LazyLoad();
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 
     private void initView() {
@@ -57,7 +57,7 @@ public class AttentionFragment extends LazyFragment implements EpisodeView {
 
     @Override
     protected void LazyLoad() {
-        if (!isPrepare || isVisible) {
+        if (!isPrepare || !isVisible) {
             return;
         }
         preferences = getContext().getSharedPreferences("data", MODE_PRIVATE);
@@ -69,6 +69,9 @@ public class AttentionFragment extends LazyFragment implements EpisodeView {
     public void getJokesSuccess(EpisodeBean episodeBean) {
         if (episodeBean.getCode().equals("0")) {
             List<EpisodeBean.DataBean> data = episodeBean.getData();
+            for (int i = 0; i < data.size(); i++) {
+                Log.e("TAG", data.get(i).getJid() + "");
+            }
             MyHotItemAdapter adapter = new MyHotItemAdapter(data, getContext());
             mLv.setLayoutManager(new LinearLayoutManager(getContext()));
             mLv.setAdapter(adapter);

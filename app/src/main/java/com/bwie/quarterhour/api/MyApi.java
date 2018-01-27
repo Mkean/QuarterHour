@@ -2,6 +2,7 @@ package com.bwie.quarterhour.api;
 
 import com.bwie.quarterhour.bean.EpisodeBean;
 import com.bwie.quarterhour.bean.FollowBean;
+import com.bwie.quarterhour.bean.FollowUsers;
 import com.bwie.quarterhour.bean.HotBean;
 import com.bwie.quarterhour.bean.JokeBean;
 import com.bwie.quarterhour.bean.LoginBean;
@@ -53,4 +54,7 @@ public interface MyApi {
 
     @GET(follow)
     Observable<FollowBean> follow(@Query("uid") String uid, @Query("followId") String followId, @Query("token") String token);
+
+    @GET(MyWeb.followUsers)
+    Observable<FollowUsers> getFollowUsers(@Query("uid") String uid, @Query("token") String token);
 }

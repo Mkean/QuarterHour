@@ -6,12 +6,16 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bwie.quarterhour.activity.AttentionActivity;
 import com.bwie.quarterhour.activity.BaseActivity;
 import com.bwie.quarterhour.activity.CreationActivity;
 import com.bwie.quarterhour.activity.LoginActivity;
@@ -23,7 +27,7 @@ import com.bwie.quarterhour.presenter.InfoPresenter;
 import com.bwie.quarterhour.view.InfoView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, InfoView {
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, InfoView, CompoundButton.OnCheckedChangeListener {
     //头像
     private SimpleDraweeView mSimple;
     //title
@@ -58,6 +62,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     //消息通知
     private TextView mMessage;
     private SharedPreferences preferences;
+    private CheckBox mCheckbox;
 
 
     @Override
@@ -108,6 +113,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         mCollection = $findViewById(R.id.bt_collection);
         mSearch = $findViewById(R.id.bt_search);
         mMessage = $findViewById(R.id.bt_message);
+        mCheckbox = $findViewById(R.id.checkbox);
     }
 
     @Override
@@ -126,6 +132,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         mCollection.setOnClickListener(this);
         mSearch.setOnClickListener(this);
         mMessage.setOnClickListener(this);
+        mCheckbox.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -146,7 +153,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 break;
             //关注
             case R.id.bt_attention:
-
+                $startActivity(AttentionActivity.class);
                 break;
             //收藏
             case R.id.bt_collection:
@@ -192,4 +199,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         $Toast("请求个人信息失败");
         $Log(e.getMessage().toString());
     }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            Toast.makeText(this, "开", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "关", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
