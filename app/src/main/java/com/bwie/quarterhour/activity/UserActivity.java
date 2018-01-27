@@ -24,7 +24,7 @@ import static com.bwie.quarterhour.R.id.follow_bt;
 * */
 public class UserActivity extends BaseActivity implements FollowView {
 
-    private String uid;
+    private String followId;
     private SimpleDraweeView mHead;
     private RecyclerView mLv;
     private TextView mPraiseNum;
@@ -41,14 +41,23 @@ public class UserActivity extends BaseActivity implements FollowView {
     private int num = 16;
     private int praise = 16;
     private int i = 0;
+    private String token;
+    private String uid;
 
     @Override
     protected void initData() {
         Intent intent = getIntent();
-        uid = intent.getStringExtra("uid");
+        followId = intent.getStringExtra("uid");
         mHead.setImageURI("res://com.bwie.quarterhour/" + R.drawable.raw_1500002478);
         followPresenter = new FollowPresenter(this);
         preferences = getSharedPreferences("data", MODE_PRIVATE);
+        uid = preferences.getString("uid", "");
+        token = preferences.getString("token", "");
+        if (uid.equals("") || token.equals("")) {
+            $Toast("请先登录");
+            $startActivity(Login2Activity.class);
+            return;
+        }
     }
 
     @Override
@@ -111,7 +120,7 @@ public class UserActivity extends BaseActivity implements FollowView {
                 $Toast("小程正在努力研发中…");
                 break;
             case follow_bt:
-                followPresenter.follow(preferences.getString("uid", ""), uid, preferences.getString("token", ""));
+                followPresenter.follow(uid, followId, token);
                 break;
             case R.id.user_share:
                 $Toast("小程正在努力研发中…");

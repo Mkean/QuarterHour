@@ -29,8 +29,14 @@ public class MyWeb {
     public static final String PublicVideo = "quarter/publishVideo";
     //获取视频列表
     public static final String getVideos = "quarter/getVideos";
+    //获取视频详情
+    public static final String getVideosDetails = "quarter/getVideoDetail";
     //关注
     public static final String follow = "quarter/follow";
     //关注列表
     public static final String followUsers = "quarter/getFollowUsers";
+    //获取热门视频
+    public static final String getHotVideos = "quarter/getHotVideos";
+    //作品评论
+    public static final String comment = "quarter/comment";
 }

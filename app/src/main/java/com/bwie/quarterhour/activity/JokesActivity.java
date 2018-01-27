@@ -33,6 +33,8 @@ public class JokesActivity extends BaseActivity implements JokesView {
     private PopupWindow mPopupWindow;
     private ImageView mLeftImg;
     private TextView mContent;
+    private String uid;
+    private String token;
 
 
     @Override
@@ -41,6 +43,13 @@ public class JokesActivity extends BaseActivity implements JokesView {
         mContent.setText("取消");
         mLeftImg.setVisibility(View.GONE);
         preferences = getSharedPreferences("data", MODE_PRIVATE);
+        uid = preferences.getString("uid", "");
+        token = preferences.getString("token", "");
+        if (uid.equals("") || token.equals("")) {
+            $Toast("请先登录");
+            $startActivity(Login2Activity.class);
+            return;
+        }
         mRight.setText("发表");
     }
 
@@ -76,7 +85,7 @@ public class JokesActivity extends BaseActivity implements JokesView {
                 break;
             case R.id.text_right:
                 String jokes = mJokes.getText().toString();
-                jokesPresenter.releaseJokes(preferences.getString("uid", ""), jokes, preferences.getString("token", ""));
+                jokesPresenter.releaseJokes(uid, jokes, token);
                 break;
 
             case R.id.text_left:

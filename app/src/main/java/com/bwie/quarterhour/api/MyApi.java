@@ -1,5 +1,6 @@
 package com.bwie.quarterhour.api;
 
+import com.bwie.quarterhour.bean.CommentBean;
 import com.bwie.quarterhour.bean.EpisodeBean;
 import com.bwie.quarterhour.bean.FollowBean;
 import com.bwie.quarterhour.bean.FollowUsers;
@@ -10,6 +11,8 @@ import com.bwie.quarterhour.bean.MBanner;
 import com.bwie.quarterhour.bean.RegisterBean;
 import com.bwie.quarterhour.bean.UpdatePassBean;
 import com.bwie.quarterhour.bean.UserInfoBean;
+import com.bwie.quarterhour.bean.VideoBean;
+import com.bwie.quarterhour.bean.VideoDetailsBean;
 import com.bwie.quarterhour.constant.MyWeb;
 
 import io.reactivex.Observable;
@@ -57,4 +60,13 @@ public interface MyApi {
 
     @GET(MyWeb.followUsers)
     Observable<FollowUsers> getFollowUsers(@Query("uid") String uid, @Query("token") String token);
+
+    @GET(MyWeb.getHotVideos)
+    Observable<VideoBean> getHotVideos(@Query("page") int page, @Query("token") String token);
+
+    @GET(MyWeb.comment)
+    Observable<CommentBean> comment(@Query("uid") String uid, @Query("wid") String wid, @Query("content") String content, @Query("token") String token);
+
+    @GET(MyWeb.getVideosDetails)
+    Observable<VideoDetailsBean> getVideoDetails(@Query("wid") String wid);
 }

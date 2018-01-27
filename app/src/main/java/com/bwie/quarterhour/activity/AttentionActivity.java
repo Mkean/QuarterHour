@@ -29,7 +29,14 @@ public class AttentionActivity extends BaseActivity implements FollowUsersView {
         mRight.setText("热门关注");
         SharedPreferences preferences = getSharedPreferences("data", MODE_PRIVATE);
         followUsersPresenter = new FollowUsersPresenter(this);
-        followUsersPresenter.getFollowUsers(preferences.getString("uid", ""), preferences.getString("token", ""));
+        String uid = preferences.getString("uid", "");
+        String token = preferences.getString("token", "");
+        if (uid.equals("") || token.equals("")) {
+            $Toast("请先登录");
+            $startActivity(Login2Activity.class);
+            return;
+        }
+        followUsersPresenter.getFollowUsers(uid, token);
     }
 
     @Override
