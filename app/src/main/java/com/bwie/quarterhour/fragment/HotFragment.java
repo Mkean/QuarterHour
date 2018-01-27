@@ -12,13 +12,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bwie.quarterhour.R;
-import com.bwie.quarterhour.adapter.MyHotAdapter;
+import com.bwie.quarterhour.adapter.MyHotItemAdapter;
 import com.bwie.quarterhour.bean.EpisodeBean;
 import com.bwie.quarterhour.bean.MBanner;
 import com.bwie.quarterhour.presenter.EpisodePresenter;
 import com.bwie.quarterhour.presenter.MBannerPresenter;
+import com.bwie.quarterhour.utils.ImageUtils;
 import com.bwie.quarterhour.view.EpisodeView;
 import com.bwie.quarterhour.view.MBannerView;
+import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +39,11 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
     private View view;
     private MBannerPresenter mBannerPresenter;
     private RecyclerView mLv;
-    private MyHotAdapter adapter;
     private SharedPreferences preferences;
     private EpisodePresenter episodePresenter;
     private List<EpisodeBean.DataBean> data;
+    private Banner mBanner;
+    private MyHotItemAdapter adapter;
 
     @Nullable
     @Override
@@ -54,6 +57,7 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
 
     private void initView() {
         mLv = view.findViewById(R.id.hot_lv);
+        mBanner = view.findViewById(R.id.hot_banner);
     }
 
     @Override
@@ -87,9 +91,10 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
             for (int i = 0; i < data.size(); i++) {
                 list.add(data.get(i).getIcon());
             }
-            adapter = new MyHotAdapter(list, getContext(), this.data);
-            mLv.setLayoutManager(new LinearLayoutManager(getContext()));
-            mLv.setAdapter(adapter);
+
+            mBanner.setImageLoader(new ImageUtils());
+            mBanner.setImages(list);
+            mBanner.start();
         }
     }
 
@@ -104,6 +109,9 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
     public void getJokesSuccess(EpisodeBean episodeBean) {
         if (episodeBean.getCode().equals("0")) {
             data = episodeBean.getData();
+            adapter = new MyHotItemAdapter(data, getContext());
+            mLv.setLayoutManager(new LinearLayoutManager(getContext()));
+            mLv.setAdapter(adapter);
         } else {
             Toast.makeText(getContext(), episodeBean.getMsg() + "", Toast.LENGTH_SHORT).show();
         }
@@ -114,7 +122,7 @@ public class HotFragment extends LazyFragment implements MBannerView, EpisodeVie
         Toast.makeText(getContext(), "请求数据失败", Toast.LENGTH_SHORT).show();
         Log.e("HotFragment", e.getMessage().toString());
     }
-    
+
     @Override
     public void onPause() {
         super.onPause();

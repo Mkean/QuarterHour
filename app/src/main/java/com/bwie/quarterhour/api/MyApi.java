@@ -13,6 +13,7 @@ import com.bwie.quarterhour.bean.UpdatePassBean;
 import com.bwie.quarterhour.bean.UserInfoBean;
 import com.bwie.quarterhour.bean.VideoBean;
 import com.bwie.quarterhour.bean.VideoDetailsBean;
+import com.bwie.quarterhour.bean.VideosBean;
 import com.bwie.quarterhour.constant.MyWeb;
 
 import io.reactivex.Observable;
@@ -69,4 +70,7 @@ public interface MyApi {
 
     @GET(MyWeb.getVideosDetails)
     Observable<VideoDetailsBean> getVideoDetails(@Query("wid") String wid);
+
+    @GET(MyWeb.getVideos)
+    Observable<VideosBean> getVideos(@Query("uid") String uid, @Query("type") String type, @Query("page") int page);
 }

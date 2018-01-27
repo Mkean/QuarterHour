@@ -1,6 +1,6 @@
 package com.bwie.quarterhour.view;
 
-import com.bwie.quarterhour.bean.VideoBean;
+import com.bwie.quarterhour.bean.VideosBean;
 
 /**
  * 作者：王庆
@@ -8,7 +8,7 @@ import com.bwie.quarterhour.bean.VideoBean;
  */
 
 public interface VideosView extends IView {
-    void getHotVideosSuccess(VideoBean videoBean);
+    void getVideosSuccess(VideosBean videosBean);
 
-    void getHotVideosFailed(Throwable e);
+    void getVideosFailed(Throwable e);
 }

@@ -16,8 +16,8 @@ import com.bwie.quarterhour.R;
 import com.bwie.quarterhour.activity.DetailsActivity;
 import com.bwie.quarterhour.adapter.MyHotVideosAdapter;
 import com.bwie.quarterhour.bean.VideoBean;
-import com.bwie.quarterhour.presenter.VideosPresenter;
-import com.bwie.quarterhour.view.VideosView;
+import com.bwie.quarterhour.presenter.VideoPresenter;
+import com.bwie.quarterhour.view.VideoView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +27,11 @@ import java.util.List;
  * 时间：2018/1/27
  */
 
-public class HotVideosFragment extends LazyFragment implements VideosView {
+public class HotVideosFragment extends LazyFragment implements VideoView {
     private boolean isPrepare;
     private View view;
     private RecyclerView mLv;
-    private VideosPresenter videosPresenter;
+    private VideoPresenter videosPresenter;
     private List<String> list;
 
     @Nullable
@@ -77,7 +77,7 @@ public class HotVideosFragment extends LazyFragment implements VideosView {
         if (!isPrepare || !isVisible) {
             return;
         }
-        videosPresenter = new VideosPresenter(this);
+        videosPresenter = new VideoPresenter(this);
         videosPresenter.getHotVideos(1);
     }
 
