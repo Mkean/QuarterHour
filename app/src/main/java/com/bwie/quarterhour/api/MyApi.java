@@ -4,10 +4,10 @@ import com.bwie.quarterhour.bean.CommentBean;
 import com.bwie.quarterhour.bean.EpisodeBean;
 import com.bwie.quarterhour.bean.FollowBean;
 import com.bwie.quarterhour.bean.FollowUsers;
-import com.bwie.quarterhour.bean.HotBean;
 import com.bwie.quarterhour.bean.JokeBean;
 import com.bwie.quarterhour.bean.LoginBean;
 import com.bwie.quarterhour.bean.MBanner;
+import com.bwie.quarterhour.bean.PraiseBean;
 import com.bwie.quarterhour.bean.RegisterBean;
 import com.bwie.quarterhour.bean.UpdatePassBean;
 import com.bwie.quarterhour.bean.UserInfoBean;
@@ -47,9 +47,6 @@ public interface MyApi {
     @GET(MyWeb.UserInfo)
     Observable<UserInfoBean> getInfo(@Query("uid") String uid, @Query("token") String token);
 
-    @GET
-    Observable<HotBean> getHot();
-
     @GET(MyWeb.getJokes)
     Observable<EpisodeBean> getJokes(@Query("page") int page, @Query("token") String token);
 
@@ -73,4 +70,8 @@ public interface MyApi {
 
     @GET(MyWeb.getVideos)
     Observable<VideosBean> getVideos(@Query("uid") String uid, @Query("type") String type, @Query("page") int page);
+
+    //作品点赞,
+    @GET(MyWeb.praise)
+    Observable<PraiseBean> praise(@Query("uid") String uid, @Query("wid") String wid, @Query("token") String token);
 }

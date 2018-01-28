@@ -2,13 +2,20 @@ package com.bwie.quarterhour.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,10 +23,13 @@ import com.bumptech.glide.Glide;
 import com.bwie.quarterhour.R;
 import com.bwie.quarterhour.adapter.MyMessageAdapter;
 import com.bwie.quarterhour.bean.CommentBean;
+import com.bwie.quarterhour.bean.PraiseBean;
 import com.bwie.quarterhour.bean.VideoDetailsBean;
 import com.bwie.quarterhour.presenter.CommentPresenter;
+import com.bwie.quarterhour.presenter.PraisePresenter;
 import com.bwie.quarterhour.presenter.VideoDetailsPresenter;
 import com.bwie.quarterhour.view.CommentView;
+import com.bwie.quarterhour.view.PraiseView;
 import com.bwie.quarterhour.view.VideoDetailsView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -28,7 +38,7 @@ import java.util.List;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
-public class DetailsActivity extends BaseActivity implements CommentView, VideoDetailsView {
+public class DetailsActivity extends BaseActivity implements CommentView, VideoDetailsView, PraiseView {
 
 
     private RecyclerView mLv;
@@ -40,8 +50,8 @@ public class DetailsActivity extends BaseActivity implements CommentView, VideoD
     private JCVideoPlayerStandard mVideo;
     private SimpleDraweeView mHead;
     private ImageView mShare;
-    private ImageView mHate;
-    private ImageView mLike;
+    private CheckBox mHate;
+    private CheckBox mLike;
     private ImageView mBack;
     private LinearLayout mEdit;
     private MyMessageAdapter adapter;
@@ -52,16 +62,14 @@ public class DetailsActivity extends BaseActivity implements CommentView, VideoD
     private VideoDetailsPresenter videoDetailsPresenter;
     private String wid;
     private VideoDetailsBean.DataBean data;
+    private PraisePresenter praisePresenter;
+    private PopupWindow mPopupWindow;
 
     @Override
     protected void initData() {
         Intent intent = getIntent();
         wid = intent.getStringExtra("wid");
-
-
         getPresenter();
-
-
         preferences = getSharedPreferences("data", MODE_PRIVATE);
         uid = preferences.getString("uid", "");
         token = preferences.getString("token", "");
@@ -77,13 +85,14 @@ public class DetailsActivity extends BaseActivity implements CommentView, VideoD
         commentPresenter = new CommentPresenter(this);
         videoDetailsPresenter = new VideoDetailsPresenter(this);
         videoDetailsPresenter.getVideoDetails(wid);
+        praisePresenter = new PraisePresenter(this);
     }
 
     @Override
     protected void initView() {
         mBack = (ImageView) findViewById(R.id.details_back);
-        mLike = (ImageView) findViewById(R.id.details_like);
-        mHate = (ImageView) findViewById(R.id.details_hate);
+        mLike = (CheckBox) findViewById(R.id.details_like);
+        mHate = (CheckBox) findViewById(R.id.details_hate);
         mShare = (ImageView) findViewById(R.id.details_share);
         mHead = (SimpleDraweeView) findViewById(R.id.details_head);
         mVideo = (JCVideoPlayerStandard) findViewById(R.id.details_video);
@@ -120,13 +129,21 @@ public class DetailsActivity extends BaseActivity implements CommentView, VideoD
                 finish();
                 break;
             case R.id.details_like:
-
+                if (mHate.isChecked()) {
+                    mLike.setChecked(false);
+                } else if (mLike.isChecked()) {
+                    praisePresenter.praise(uid, wid, token);
+                }
+                $Log(mLike.isChecked() + "====" + mHate.isChecked());
                 break;
             case R.id.details_hate:
-
+                if (mLike.isChecked()) {
+                    mHate.setChecked(false);
+                }
+                $Log(mHate.isChecked() + "====" + mLike.isChecked());
                 break;
             case R.id.details_share:
-
+                setShare();
                 break;
             case R.id.details_head:
                 Bundle bundle = new Bundle();
@@ -144,7 +161,41 @@ public class DetailsActivity extends BaseActivity implements CommentView, VideoD
                 }
                 commentPresenter.comment(uid, wid, s, token);
                 break;
+            case R.id.share_cancel:
+                mPopupWindow.dismiss();
+                break;
+            case R.id.share_space:
+                break;
+            case R.id.share_weChat:
+                break;
+            case R.id.share_qq:
+                break;
+            case R.id.share_friends:
+                break;
+
+
         }
+    }
+
+    private void setShare() {
+        View view = LayoutInflater.from(this).inflate(R.layout.share_popu, null);
+        mPopupWindow = new PopupWindow(view, ViewGroup.MarginLayoutParams.MATCH_PARENT, ViewGroup.MarginLayoutParams.WRAP_CONTENT, true);
+        mPopupWindow.setAnimationStyle(R.style.PopupWindowAnimation);
+        mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mPopupWindow.setOutsideTouchable(true);
+        mPopupWindow.setTouchable(true);
+        mPopupWindow.showAtLocation(getLayoutInflater().inflate(R.layout.activity_main, null), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+
+        ImageView mSpace = view.findViewById(R.id.share_space);
+        ImageView mWeChat = view.findViewById(R.id.share_weChat);
+        TextView mCancel = view.findViewById(R.id.share_cancel);
+        ImageView mQQ = view.findViewById(R.id.share_qq);
+        ImageView mFriends = view.findViewById(R.id.share_friends);
+        mSpace.setOnClickListener(this);
+        mWeChat.setOnClickListener(this);
+        mCancel.setOnClickListener(this);
+        mQQ.setOnClickListener(this);
+        mFriends.setOnClickListener(this);
     }
 
     @Override
@@ -214,7 +265,22 @@ public class DetailsActivity extends BaseActivity implements CommentView, VideoD
         if (videoDetailsPresenter != null) {
             videoDetailsPresenter.detach();
         }
+        if (praisePresenter != null) {
+            praisePresenter.detach();
+        }
     }
 
 
+    @Override
+    public void praiseSuccess(PraiseBean praiseBean) {
+        if (!praiseBean.getCode().equals("0")) {
+            $Toast(praiseBean.getMsg());
+        }
+    }
+
+    @Override
+    public void praiseFailed(Throwable e) {
+        $Toast("失败");
+        $Log(e.getMessage().toString());
+    }
 }

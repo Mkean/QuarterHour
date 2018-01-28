@@ -25,19 +25,21 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/raw_1500019926" />
 
-            <ImageView
+            <CheckBox
                 android:id="@+id/details_like"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/raw_1499933216" />
+                android:background="@drawable/like_selector"
+                android:button="@null" />
 
-            <ImageView
+            <CheckBox
                 android:id="@+id/details_hate"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/raw_1499933217" />
+                android:background="@drawable/hate_selector"
+                android:button="@null" />
 
             <ImageView
                 android:id="@+id/details_share"

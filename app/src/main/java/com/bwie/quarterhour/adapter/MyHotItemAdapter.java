@@ -74,7 +74,7 @@ public class MyHotItemAdapter extends RecyclerView.Adapter<MyHotItemAdapter.MyIt
                 context.startActivity(intent);
             }
         });
-        holder.mJcPlayer.setUp("http://ips.ifeng.com/video19.ifeng.com/video09/2014/06/16/1989823-102-086-0009.mp4", JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "李少奇骑猪上高速");
+        holder.mJcPlayer.setUp(dataBean.getVideoUrl(), JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "李少奇骑猪上高速");
 //        ImageView ivThumb = holder.mJcPlayer.ivThumb;
         Glide.with(context).load(R.drawable.raw_1500978299)
                 .into(holder.mJcPlayer.thumbImageView);

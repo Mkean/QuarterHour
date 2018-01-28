@@ -39,4 +39,6 @@ public class MyWeb {
     public static final String getHotVideos = "quarter/getHotVideos";
     //作品评论
     public static final String comment = "quarter/comment";
+    //作品点赞
+    public static final String praise = "quarter/praise";
 }
